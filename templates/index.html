@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="style.css" /> -->
+    <!-- <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'> -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>House Price Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <form action="{{ url_for('predict') }}" method="post">
+    
+        <div class="rows">
+            <h1 class="title box-shadow" style="height: 5vh">House Price Prediction</h1>
+
+            <div class="column">
+                <div class="boxes-left box-shadow">
+                    <h4 class="subtitle">Surface Area (m2)</h4>
+            
+                    <input type="number" name="surfaceArea" required="required" placeholder="Enter value">
+                </div>
+            
+                <div class="boxes-left box-shadow">
+                    <h4 class="subtitle">Building Area (m2)</h4>
+            
+                    <input type="number" name="buildingArea" required="required" placeholder="Enter value">
+                </div>
+            
+                <div class="boxes-left box-shadow">
+                    <h4 class="subtitle">Bedrooms</h4>
+            
+                    <input type="number" name="bedrooms" required="required" placeholder="Enter value">
+                </div>
+            
+                <div class="boxes-left box-shadow">
+                    <h4 class="subtitle">Bathrooms</h4>
+            
+                    <input type="number" name="bathrooms" required="required" placeholder="Enter value">
+                </div>
+            
+                <div class="boxes-left box-shadow">
+                    <h4 class="subtitle">Storey</h4>
+            
+                    <input type="number" name="storey" required="required" placeholder="Enter value">
+                </div>
+            </div>
+            <div class="column2">
+                <div class="boxes box-shadow non-first">
+                    <h4 class="subtitle">Building Age</h4>
+
+                    <div class="radiobutton">
+                        <input type="radio" id="onefouryears" name="buildingAge" value=1>
+                        <label for="onefouryears">1-4 year(s)</label><br>
+                    </div>
+                    
+                    <div class="radiobutton">
+                        <input type="radio" id="fivetenyears" name="buildingAge" value=2>
+                        <label for="fivetenyears">5-10 years</label><br>
+                    </div>
+                    
+                    <div class="radiobutton">
+                        <input type="radio" id="moretenyears" name="buildingAge" value=3>
+                        <label for="moretenyears">>10 years</label>
+                    </div>
+                </div>
+
+                <div class="boxes box-shadow non-first">
+                    <h4 class="subtitle">Facing</h4>
+
+                    <div class="radiobutton">
+                        <input type="radio" id="north" name="facing" value=3>
+                        <label for="north">North</label><br>
+                    </div>
+                    
+                    <div class="radiobutton">
+                        <input type="radio" id="west" name="facing" value=0>
+                        <label for="west">West</label><br>   
+                    </div>
+
+                    <div class="radiobutton">
+                        <input type="radio" id="east" name="facing" value=2>
+                        <label for="east">East</label><br>                    
+                    </div>
+
+                    <div class="radiobutton">
+                        <input type="radio" id="south" name="facing" value=1>
+                        <label for="south">South</label>                    
+                    </div>
+
+                </div>
+
+                <div class="boxes box-shadow non-first">
+                    <h4 class="subtitle">Road Width</h4>
+
+                    <div class="radiobutton">
+                        <input type="radio" id="onetwocars" name="roadWidth" value=2>
+                        <label for="onetwocars">1-2 Cars</label><br>                    
+                    </div>
+
+                    <div class="radiobutton">
+                        <input type="radio" id="moretwocars" name="roadWidth" value=3>
+                        <label for="moretwocars">>2 Cars</label><br>                    
+                    </div>
+
+                    <div class="radiobutton">
+                        <input type="radio" id="lessonecar" name="roadWidth" value=1>
+                        <label for="lessonecar"> <1 Cars </label>                    
+                    </div>
+                </div>
+
+                <button type="submit" class="non-first">Predict</button>
+            </div>
+
+
+
+            <div class="column5">
+                <div class="row1">
+                    <div class="column3">
+                        <div class="boxes box-shadow non-first">
+                            <h4 class="subtitle">Ownership Status</h4>
+                            
+                            <div class="radiobutton">
+                                <input type="radio" id="surathijau" name="ownershipStatus" value=1>
+                                <label for="surathijau">Surat Hijau</label><br>                    
+                            </div>
+                            <div class="radiobutton">
+                                <input type="radio" id="ppjb" name="ownershipStatus" value=2>
+                                <label for="ppjb">Pengikatan Perjanjian Jual Beli (PPJB)</label><br>
+                            </div>
+                        
+                            <div class="radiobutton">
+                                <input type="radio" id="hgb" name="ownershipStatus" value=3>
+                                <label for="hgb">Hak Guna Bangunan (HGB)</label><br>                    
+                            </div>
+            
+            
+                            <div class="radiobutton">
+                                <input type="radio" id="shm" name="ownershipStatus" value=4>
+                                <label for="shm">Hak Milik (SHM)</label>                    
+                            </div>
+                        </div>
+            
+                        <div class="boxes box-shadow non-first">
+                            <h4 class="subtitle">House Position</h4>
+            
+                            <div class="radiobutton">
+                                <input type="radio" id="standard" name="housePosition" value=2>
+                                <label for="standard">Standard</label><br>                    
+                            </div>
+            
+            
+                            <div class="radiobutton">
+                                <input type="radio" id="hook" name="housePosition" value=3>
+                                <label for="hook">Hook</label><br>                    
+                            </div>
+            
+            
+                            <div class="radiobutton">
+                                <input type="radio" id="culdesac" name="housePosition" value=0>
+                                <label for="culdesac">Cul De Sac</label><br>                   
+                            </div>
+            
+            
+                            <div class="radiobutton">
+                                <input type="radio" id="ngantong" name="housePosition" value=1>
+                                <label for="ngantong">Kantong Belakang</label><br>                    
+                            </div>
+            
+            
+                            <div class="radiobutton">
+                                <input type="radio" id="tusuksate" name="housePosition" value=4>
+                                <label for="tusuksate">Tusuk Sate</label>                    
+                            </div>
+            
+            
+                            
+                        </div>
+                    </div>
+
+                    <div class="column4">
+                        <div class="boxes box-shadow non-first">
+                            <h4 class="subtitle">Ready to Use</h4>
+            
+                            <div class="radiobutton">
+                                <input type="radio" id="ready" name="readyToUse" value=1>
+                                <label for="ready">Yes</label><br>                    
+                            </div>
+            
+                            <div class="radiobutton">
+                                <input type="radio" id="notready" name="readyToUse" value=0>
+                                <label for="notready">No</label>                    
+                            </div>
+            
+                                
+                        </div>
+            
+                        <div class="boxes box-shadow non-first">
+                            <h4 class="subtitle">Furnished</h4>
+            
+                            <div class="radiobutton">
+                                <input type="radio" id="furnished" name="furnished" value=1>
+                                <label for="furnished">Yes</label><br>                    
+                            </div>
+            
+                            <div class="radiobutton">
+                                <input type="radio" id="nonfurnished" name="furnished" value=0>
+                                <label for="nonfurnished">No</label>                    
+                            </div>
+                        </div>
+            
+                        <div class="boxes box-shadow non-first">
+                            <h4 class="subtitle">Urgent</h4>
+            
+                            <div class="radiobutton">
+                                <input type="radio" id="urgent" name="urgent" value=1>
+                                <label for="urgent">Yes</label><br>                    
+                            </div>
+            
+                            <div class="radiobutton">
+                                <input type="radio" id="noturgent" name="urgent" value=0>
+                                <label for="noturgent">No</label>                    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row2">
+                    <div class="non-first predicted-box">
+                        <p class="subtitle2">Predicted price : <b class="price">{{ prediction }}</b></p>
+
+                        {% if (prediction) != 0 %}
+                        <!-- <p class="price">{{ prediction }}</p> -->
+                        <div class="column6">
+                            <p class="desc">Surface Area: <b>{{ surfaceArea }}</b> m2</p>
+                            <p class="desc">Building Area: <b>{{ buildingArea }}</b> m2</p>
+                            <p class="desc">Bedrooms: <b>{{ bedrooms }}</b> room(s)</p>
+                            <p class="desc">Bathrooms: <b>{{ bathrooms }}</b> room(s)</p>
+                            <p class="desc">Storey: <b>{{ storey }}</b> storey(s)</p>
+                            <p class="desc">Building Age: <b>{{ buildingAgeText }}</b></p>
+                            <p class="desc">Facing: <b>{{ facingText }}</b></p>
+                        </div>
+                        
+                        <div class="column7">
+                            <p class="desc">Road Width: <b>{{ roadWidthText }}</b></p>
+                            <p class="desc">Ownership Status: <b>{{ ownershipStatusText }}</b></p>
+                            <p class="desc">House Position: <b>{{ housePositionText }}</b></p>
+                            <p class="desc">Ready to Use: <b>{{ readyToUseText }}</b></p>
+                            <p class="desc">Furnished: <b>{{ furnishedText }}</b></p>
+                            <p class="desc">Urgent: <b>{{ urgentText }}</b></p>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+            
+        </div>
+
+    </form>
+    
+</body>
+</html>
